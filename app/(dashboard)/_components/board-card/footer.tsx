@@ -18,6 +18,12 @@ export const Footer = ({
     onClick,
     disabled
 }: FooterProps) => {
+    const handleFavorite = (
+        e: React.MouseEvent<HTMLButtonElement , MouseEvent>) => {
+        e.stopPropagation();
+        e.preventDefault();
+        onClick();
+    }
     return (
         <div className="bg-white p-4 relative">
             <p className="text-[13px] truncate max-w-calc(100%-20px)]">
@@ -28,7 +34,7 @@ export const Footer = ({
                 {authorLabel} - {createdAtLabel}
             </p>
             <button
-                onClick={onClick}
+                onClick={handleFavorite}
                 disabled={disabled}
                 className={cn(
                     "absolute top-2 right-2",
