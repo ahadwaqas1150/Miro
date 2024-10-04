@@ -5,7 +5,7 @@ import{
     useOrganization,
 } from "@clerk/nextjs";
 import { cn } from "@/lib/utils";
-import { Hint } from "../hint";
+import { Hint } from "../../../../components/hint";
 
 interface ItemProps {
     id: string;
@@ -22,13 +22,16 @@ export const Items = ({
     const { setActive} = useOrganizationList();
     const isActive = organization?.id === id;
     const onClick = () => {
-        if (isActive) return;
+        if (!setActive) return;
 
         setActive && setActive({organization: id});
     };
     return (
         <div className="aspect-sqaure relative h-8 p-3">
-            <Hint label={name} side="right" align="start" sideOffset={18}>
+            <Hint label={name}
+            side="right" 
+            align="start" 
+            sideOffset={18}>
             <Image
                 fill
                 src={imageUrl}

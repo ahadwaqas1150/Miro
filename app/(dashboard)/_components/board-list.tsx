@@ -18,8 +18,13 @@ interface BoardListProps {
 }
 export const BoardList = (
     { orgId, query }: BoardListProps) => {
-        const data = useQuery(api.boards.get, { orgId });
-        console.log("hello world");
+        console.log("query",query);
+        const data = useQuery(api.boards.get,
+            { 
+                orgId ,
+                ...query
+            });
+
         if(data === undefined){
             return <div>
             <h2 className="text-3xl">
@@ -57,7 +62,7 @@ export const BoardList = (
         if(!data?.length){
             return <EmptyBoard/>
         }
-            console.log("data",data);
+        
     return (
         <div>
             <h2 className="text-3xl">
